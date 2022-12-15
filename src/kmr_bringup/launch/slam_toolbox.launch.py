@@ -11,7 +11,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     kmr_bringup_path = get_package_share_path('kmr_bringup')
-    rviz_config_path = kmr_bringup_path / 'rviz/bringup.rviz'
+    rviz_config_path = kmr_bringup_path / 'rviz/slam_toolbox.rviz'
     slam_toolbox_launch_file_dir = os.path.join(get_package_share_path('slam_toolbox'), 'launch')
 
     rviz_arg = DeclareLaunchArgument(name='rvizconfig', default_value=str(rviz_config_path),
