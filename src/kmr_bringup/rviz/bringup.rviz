@@ -97,7 +97,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /laser_scan1
+        Value: /scan1
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -130,7 +130,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /laser_scan2
+        Value: /scan2
       Use Fixed Frame: true
       Use rainbow: true
       Value: true

@@ -15,7 +15,8 @@ def generate_launch_description():
     map_dir = LaunchConfiguration(
         "map",
         default=os.path.join(
-            get_package_share_directory("kmr_bringup"), "maps", "warehouse_with_forklifts_z_005-02.yaml"
+            get_package_share_directory("kmr_bringup"), "maps", "carter_warehouse_navigation.yaml"
+            # get_package_share_directory("kmr_bringup"), "maps", "warehouse_with_forklifts_z_005_02.yaml"
             # get_package_share_directory("kmr_bringup"), "maps", "pregenerated_maps", "warehouse_with_forklifts_z_005-02.yaml"
         ),
     )
@@ -23,7 +24,8 @@ def generate_launch_description():
     param_dir = LaunchConfiguration(
         "params_file",
         default=os.path.join(
-            get_package_share_directory("kmr_bringup"), "config", "carter_navigation_params.yaml"
+            # get_package_share_directory("kmr_bringup"), "config", "carter_navigation_params.yaml"
+            get_package_share_directory("kmr_bringup"), "config", "kmr_carter_navigation_params.yaml"
             # get_package_share_directory("kmr_bringup"), "config", "navigation_params.yaml"
         ),
     )

@@ -120,7 +120,7 @@ controller_server:
       short_circuit_trajectory_evaluation: True
       stateful: True
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist", "Twirling"]
-      Twirling.scale: 0.1
+      Twirling.scale: 10.0
       BaseObstacle.scale: 0.02
       PathAlign.scale: 32.0
       PathAlign.forward_point_distance: 0.1
@@ -158,15 +158,9 @@ local_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: scan scan1
+        observation_sources: scan
         scan:
-          topic: /laser_scan1
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
-        scan1:
-          topic: /laser_scan2
+          topic: /scan1
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -211,15 +205,9 @@ global_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: scan scan1
+        observation_sources: scan
         scan:
-          topic: /laser_scan1
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
-        scan1:
-          topic: /laser_scan2
+          topic: /scan1
           max_obstacle_height: 2.0
           clearing: True
           marking: True
