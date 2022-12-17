@@ -60,7 +60,6 @@ class LaserConcatenator(Node):
             self.simulated = False
 
         # Create publisher to publish final pointcloud
-        # self.publisher_ = self.create_publisher(PointCloud2, 'pc_concatenated', qos_profile = rclpy.qos.qos_profile_sensor_data)
         self.publisher_ = self.create_publisher(PointCloud2, 'pc_concatenated', qos_profile=10)
 
         # Setup for listening to transformation messages over /tf and /tf_static.

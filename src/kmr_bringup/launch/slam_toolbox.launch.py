@@ -11,14 +11,19 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     kmr_bringup_path = get_package_share_path('kmr_bringup')
+    kmr_concatenator_launch_file_dir = os.path.join(get_package_share_path('kmr_concatenator'), 'launch/')
     rviz_config_path = kmr_bringup_path / 'rviz/slam_toolbox.rviz'
-    slam_toolbox_launch_file_dir = os.path.join(get_package_share_path('slam_toolbox'), 'launch')
+    slam_toolbox_launch_file_dir = os.path.join(get_package_share_path('slam_toolbox'), 'launch/')
 
     rviz_arg = DeclareLaunchArgument(name='rvizconfig', default_value=str(rviz_config_path),
                                      description='Absolute path to rviz config file')
 
+    kmr_concatenator_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([kmr_concatenator_launch_file_dir, 'concatenator.launch.py']),
+    )
+
     slam_toolbox_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([slam_toolbox_launch_file_dir, '/online_async_launch.py']),
+        PythonLaunchDescriptionSource([slam_toolbox_launch_file_dir, 'online_async_launch.py']),
         launch_arguments={
             'params_file': os.path.join(kmr_bringup_path, 'config/mapper_params_online_async.yaml'),
         }.items(),
@@ -33,6 +38,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        kmr_concatenator_launch,
         slam_toolbox_launch,
         rviz_arg,
         rviz_node
