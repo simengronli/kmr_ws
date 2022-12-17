@@ -157,19 +157,19 @@ local_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: "scan scan1"
+        observation_sources: scan # scan1
         scan:
           topic: /scan1
           max_obstacle_height: 2.0
           clearing: True
           marking: True
           data_type: "LaserScan"
-        scan1:
-          topic: /scan2
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
+        # scan1:
+        #   topic: /scan2
+        #   max_obstacle_height: 2.0
+        #   clearing: True
+        #   marking: True
+        #   data_type: "LaserScan"
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -210,19 +210,19 @@ global_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: "scan scan1"
+        observation_sources: scan # scan1
         scan:
           topic: /scan1
           max_obstacle_height: 2.0
           clearing: True
           marking: True
           data_type: "LaserScan"
-        scan1:
-          topic: /scan2
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
+        # scan1:
+        #   topic: /scan2
+        #   max_obstacle_height: 2.0
+        #   clearing: True
+        #   marking: True
+        #   data_type: "LaserScan"
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -255,7 +255,7 @@ global_costmap:
 map_server:
   ros__parameters:
     use_sim_time: True
-    yaml_filename: "warehouse_with_forklifts.yaml"
+    yaml_filename: "slam_warehouse_with_forklifts.yaml"
 
 map_saver:
   ros__parameters:

@@ -1,3 +1,10 @@
+## Copyright (c) 2022, NVIDIA CORPORATION. All rights reserved.
+## NVIDIA CORPORATION and its licensors retain all intellectual property
+## and proprietary rights in and to this software, related documentation
+## and any modifications thereto.  Any use, reproduction, disclosure or
+## distribution of this software and related documentation without an express
+## license agreement from NVIDIA CORPORATION is strictly prohibited.
+
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
@@ -15,31 +22,26 @@ def generate_launch_description():
     map_dir = LaunchConfiguration(
         "map",
         default=os.path.join(
-            # get_package_share_directory("kmr_bringup"), "maps", "carter_warehouse_navigation.yaml"
-            get_package_share_directory("kmr_bringup"), "maps/pregenerated_maps", "warehouse_with_forklifts.yaml"
-            # get_package_share_directory("kmr_bringup"), "maps/slam_generated_maps", "slam_warehouse_with_forklifts.yaml"
+            # get_package_share_directory("carter_navigation"), "maps", "carter_warehouse_navigation.yaml"
+            get_package_share_directory("kmr_bringup"), "maps", "carter_warehouse_navigation.yaml"
         ),
     )
 
     param_dir = LaunchConfiguration(
         "params_file",
         default=os.path.join(
+            # get_package_share_directory("carter_navigation"), "params", "carter_navigation_params.yaml"
             get_package_share_directory("kmr_bringup"), "config", "carter_navigation_params.yaml"
-            # get_package_share_directory("kmr_bringup"), "config", "kmr_carter_navigation_params.yaml"
-            # get_package_share_directory("kmr_bringup"), "config", "navigation_params.yaml"
         ),
     )
 
     nav2_bringup_launch_dir = os.path.join(get_package_share_directory("nav2_bringup"), "launch")
 
-    rviz_config_dir = os.path.join(get_package_share_directory("kmr_bringup"), "rviz", "carter_navigation.rviz")
-    # rviz_config_dir = os.path.join(get_package_share_directory("kmr_bringup"), "rviz", "navigation.rviz")
+    rviz_config_dir = os.path.join(get_package_share_directory("carter_navigation"), "rviz2", "carter_navigation.rviz")
 
     return LaunchDescription(
         [
-            DeclareLaunchArgument(
-                "map", default_value=map_dir, description="Full path to map file to load"
-            ),
+            DeclareLaunchArgument("map", default_value=map_dir, description="Full path to map file to load"),
             DeclareLaunchArgument(
                 "params_file", default_value=param_dir, description="Full path to param file to load"
             ),
@@ -48,17 +50,11 @@ def generate_launch_description():
             ),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(os.path.join(nav2_bringup_launch_dir, "rviz_launch.py")),
-                launch_arguments={"namespace": "", 
-                                  "use_namespace": "False", 
-                                  "rviz_config": rviz_config_dir
-                }.items(),
+                launch_arguments={"namespace": "", "use_namespace": "False", "rviz_config": rviz_config_dir}.items(),
             ),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([nav2_bringup_launch_dir, "/bringup_launch.py"]),
-                launch_arguments={"map": map_dir, 
-                                  "use_sim_time": use_sim_time, 
-                                  "params_file": param_dir
-                }.items(),
+                launch_arguments={"map": map_dir, "use_sim_time": use_sim_time, "params_file": param_dir}.items(),
             ),
         ]
     )
