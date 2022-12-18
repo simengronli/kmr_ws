@@ -23,7 +23,7 @@ def generate_launch_description():
         "map",
         default=os.path.join(
             # get_package_share_directory("carter_navigation"), "maps", "carter_warehouse_navigation.yaml"
-            get_package_share_directory("kmr_bringup"), "maps", "carter_warehouse_navigation.yaml"
+            get_package_share_directory("kmr_bringup"), "maps/slam_generated_maps", "slam_warehouse_with_forklifts.yaml"
         ),
     )
 
@@ -31,13 +31,13 @@ def generate_launch_description():
         "params_file",
         default=os.path.join(
             # get_package_share_directory("carter_navigation"), "params", "carter_navigation_params.yaml"
-            get_package_share_directory("kmr_bringup"), "config", "carter_navigation_params.yaml"
+            get_package_share_directory("kmr_bringup"), "config", "working_navigation_params.yaml"  # Requires kmr_concatinator
         ),
     )
 
     nav2_bringup_launch_dir = os.path.join(get_package_share_directory("nav2_bringup"), "launch")
 
-    rviz_config_dir = os.path.join(get_package_share_directory("kmr_bringup"), "rviz", "carter_navigation.rviz")
+    rviz_config_dir = os.path.join(get_package_share_directory("kmr_bringup"), "rviz", "navigation.rviz")
 
     return LaunchDescription(
         [
