@@ -25,7 +25,7 @@ def generate_launch_description():
     slam_toolbox_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([slam_toolbox_launch_file_dir, 'online_async_launch.py']),
         launch_arguments={
-            'params_file': os.path.join(kmr_bringup_path, 'config/mapper_params_online_async.yaml'),
+            'params_file': os.path.join(kmr_bringup_path, 'config/slam_params_online_async.yaml'),
         }.items(),
     )
 
