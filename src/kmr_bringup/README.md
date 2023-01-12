@@ -2,11 +2,13 @@
 
 Package containing base funcitonality for starting the robot with some example scrips. Includes three launch files described below.
 
+**ROS 2 Version: Foxy**
+
 ## [`bringup.launch.py`](./launch/bringup.launch.py)
-Bring up rviz and the relevant sensors to be viewed
+Bring up rviz and the relevant sensors to be viewed. This requires the simulator to be running and publishing data on relevant topics.
 
 ## [`slam_toolbox.launch.py`](./launch/slam_toolbox.launch.py)
-Example of slam using the KMR in isaac sim with ros2
+Example of SLAM using the KMR in Isaac Sim with ROS 2
 
 Startup procedure:
 1. Start simulation in Isaac Sim
@@ -16,7 +18,9 @@ Startup procedure:
 
 
 ## [`navigation.launch.py`](./launch/navigation.launch.py)
-Due to issues configuring the ´observetion_sources´ parameter in 2D costmaps in both the local and global costmap only a single laserscan is used. To combine both laser scanner [kmr_concatenator](../kmr_concatenator/README.md) is used again.
+Example using Navigation 2 in Isaac Sim with the KMR.
+
+The map has to match the environment the robot is placed in. This can be specified on line 17 in [`navigation.launch.py`](./launch/navigation.launch.py). Parameter files are located in the [config](./config) directory and should be specified on line 24 in [`navigation.launch.py`](./launch/navigation.launch.py).
 
 Startup procedure:
 1. Start simulation in Isaac Sim

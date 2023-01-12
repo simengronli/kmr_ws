@@ -1,3 +1,5 @@
+**Copied from [MortenMDahl](https://github.com/MortenMDahl/kmriiwa_ws_devel) with minor modifications.**
+
 ## 1 - Description:
 This is a package made to concatenate the two laser scanner sensors on the KUKA KMR iiwa. This is done due to SLAM_Toolbox only taking a single laser scan topic as input. 
 
