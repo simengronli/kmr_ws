@@ -37,7 +37,7 @@ find_package(eigen3_cmake_module REQUIRED)
 find_package(Eigen3 REQUIRED)
 
 # Install the python module for this package
-ament_python_install_package(scripts/)
+# ament_python_install_package(scripts/)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
