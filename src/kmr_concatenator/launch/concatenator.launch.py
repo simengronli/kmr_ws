@@ -44,6 +44,6 @@ def generate_launch_description(argv=sys.argv[1:]):
             		    {'range_min' : 0.4}],
             remappings=[('cloud_in', 'pc_concatenated'),
                         # ('scan', 'scan')]
-                        ('scan', 'scan_concatenated')]
+                        ('scan', 'scan')]
             )
     ])

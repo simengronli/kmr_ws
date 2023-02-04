@@ -39,7 +39,7 @@ amcl:
     z_short: 0.05
     set_initial_pose: True
     initial_pose: {x: 0.0, y: 0.0, z: 0.0, yaw: 0.0}
-    scan_topic: scan_concatenated
+    scan_topic: scan
 
 amcl_map_client:
   ros__parameters:
