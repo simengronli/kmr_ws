@@ -17,7 +17,7 @@
 
 import sys
 import argparse
-from rclpy.qos import qos_profile_sensor_data
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from rclpy.utilities import remove_ros_args
 import time
 
@@ -59,8 +59,11 @@ class LaserConcatenator(Node):
         else:
             self.simulated = False
 
-        # Create publisher to publish final pointcloud
-        self.publisher_ = self.create_publisher(PointCloud2, 'pc_concatenated', qos_profile=10)
+        # Create publisher to publish final pointcloud with BEST_EFFORT QoS.
+        self.publisher_ = self.create_publisher(
+            PointCloud2, 
+            'pc_concatenated', 
+            QoSProfile(depth=5, reliability=ReliabilityPolicy.BEST_EFFORT, history=HistoryPolicy.KEEP_LAST))
 
         # Setup for listening to transformation messages over /tf and /tf_static.
         print('Initializing TF buffer and listener.')
@@ -80,9 +83,9 @@ class LaserConcatenator(Node):
         # Gets the transform message from original to goal frame.
         try:
             delay = tf2_ros.Duration(seconds=0, nanoseconds=50_000_000)  # Due to ExtrapolationExecption into the future. Not time critical. tf from baselink to scanners are static
-            self.transform_B1 = self.tf_buffer.lookup_transform("base_link", "kmr_laser_B1_link", (node.get_clock().now() - delay))
+            self.transform_B1 = self.tf_buffer.lookup_transform("kmr_base_link", "kmr_laser_B1_link", (node.get_clock().now() - delay))
             print('Got B1 transform from', self.transform_B1.child_frame_id, 'to', self.transform_B1.header.frame_id)
-            self.transform_B4 = self.tf_buffer.lookup_transform("base_link", "kmr_laser_B4_link", (node.get_clock().now() - delay))
+            self.transform_B4 = self.tf_buffer.lookup_transform("kmr_base_link", "kmr_laser_B4_link", (node.get_clock().now() - delay))
             print('Got B4 transform from', self.transform_B4.child_frame_id, 'to', self.transform_B4.header.frame_id)
 
         except tf2_ros.LookupException as e:
