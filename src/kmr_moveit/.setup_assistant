@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: kmr_description
+    relative_path: urdf/robot/kmr_simple_camera_wo_wheels.urdf
+  srdf:
+    relative_path: config/kmr.srdf
+  package_settings:
+    author_name: ss
+    author_email: ss@gmail.com
+    generated_timestamp: 1675803861
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
